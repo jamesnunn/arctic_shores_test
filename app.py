@@ -5,11 +5,10 @@ from collections import defaultdict
 
 import sqlalchemy
 
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from database import Candidate, CandidateScore, Base, SessionLocal, engine
+from database import Candidate, CandidateScore, SessionLocal
 
 
 app = FastAPI()
@@ -22,10 +21,6 @@ def get_db():
         yield db
     finally:
         db.close()
-
-
-class CandidateScoreData(BaseModel):
-    score: float
 
 
 def get_candidate_scores(db: Session):
@@ -77,7 +72,7 @@ def create_candidates(db: Session = Depends(get_db), candidates: dict = None):
         add_candidate(db, row["candidate_ref"], row["name"])
         add_score(db, row["candidate_ref"], row["score"])
 
-    return "Added"
+    return "Added candidates"
 
 
 @app.get("/get-candidates/")

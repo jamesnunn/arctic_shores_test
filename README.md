@@ -1,11 +1,11 @@
 ## Installation
 ```
-git clone arctic_shores_test
+git clone https://github.com/jamesnunn/arctic_shores_test
+cd arctic_shores_test
 virtualenv env
 pip install -r requirements
 
 # Run some tests
-cd arctic_shores_test
 pytest test
 ```
 
@@ -36,3 +36,8 @@ curl http://127.0.0.1:8000/get-candidates/
 # or:
 curl http://127.0.0.1:8000/get-candidates/ > output.csv
 ```
+
+
+### Notes
+I completed this in about 4 hours as api development isn't my strong point.
+I'd improve this by adding more unittests for the api's if I was familiar and had time.
